@@ -1,0 +1,8 @@
+{
+  "projects": {
+    "default": "fyp-app-c1c5a",
+    "staging": "fyp-app-c1c5a"
+  },
+  "targets": {},
+  "etags": {}
+}

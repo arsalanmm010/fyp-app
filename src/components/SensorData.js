@@ -6,7 +6,7 @@ const SensorData = () => {
   const [entriesPerPage, setEntriesPerPage] = useState(10);
 
   // const apiKey = "P4XYSGJ5E982BKO3";
-  const channelId = "2056238";
+  const channelId = process.env.MY_CHANNEL_ID;
   const url = `https://api.thingspeak.com/channels/${channelId}/feeds.json`;
 
   const fetcher = (url) => fetch(url).then((response) => response.json());
