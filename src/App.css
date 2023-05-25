@@ -109,13 +109,20 @@ a {
 
 .chart-wrapper {
    width: 100%;
-   height: 400px;
-   background-color: #fff;
+   height: 100%;
+   max-width: 800px;
+   margin-left: auto;
+   margin-right: auto;
 }
+
 
 @media (max-width: 600px) {
    .chart-wrapper {
       height: 300px;
+   }
+
+   .sensor-data {
+      margin-right: 5%;
    }
 }
 

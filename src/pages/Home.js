@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "../App.css";
 import useSWR from "swr";
 import Chart from "../components/Chart";
@@ -9,11 +9,29 @@ const channelId = process.env.REACT_APP_CHANNEL_ID;
 export default function SensorData() {
   const [currentPage, setCurrentPage] = useState(1);
   const [entriesPerPage, setEntriesPerPage] = useState(10);
+  const [chartWidth, setChartWidth] = useState(800);
+  const [chartHeight, setChartHeight] = useState(400);
 
   const url = `https://api.thingspeak.com/channels/${channelId}/feeds.json`;
 
   const fetcher = (url) => fetch(url).then((response) => response.json());
   const { data: sensorData, error } = useSWR(url, fetcher);
+
+  useEffect(() => {
+    function handleResize() {
+      const isMobile = window.matchMedia("(max-width: 600px)").matches;
+      const width = isMobile ? window.innerWidth - 120 : 800;
+      const height = isMobile ? 300 : 400;
+      setChartWidth(width);
+      setChartHeight(height);
+    }
+
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
 
   if (error) {
     console.log("Error:", error);
@@ -64,7 +82,7 @@ export default function SensorData() {
       <Table data={currentEntries} />
 
       <div className="graph">
-        <Chart data={chartData} />
+        <Chart data={chartData} width={chartWidth} height={chartHeight} />
 
         <div className="pagination">
           <span>Show entries:</span>

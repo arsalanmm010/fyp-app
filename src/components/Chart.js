@@ -10,7 +10,7 @@ import {
 } from "recharts";
 import "../App.css";
 
-export default function Chart({ data }) {
+export default function Chart({ data, width, height }) {
   const [chartWidth, setChartWidth] = useState(800);
   const [chartHeight, setChartHeight] = useState(400);
   const [showTemperature, setShowTemperature] = useState(true);
@@ -21,7 +21,7 @@ export default function Chart({ data }) {
     const handleResize = () => {
       const isMobile = window.innerWidth <= 600;
       const newWidth = isMobile ? window.innerWidth - 120 : 800;
-      const newHeight = isMobile ? 400 : 400;
+      const newHeight = isMobile ? 300 : 400;
       setChartWidth(newWidth);
       setChartHeight(newHeight);
     };
@@ -114,7 +114,7 @@ export default function Chart({ data }) {
         </label>
       </div>
       <div className="chart-wrapper">
-        <LineChart width={chartWidth} height={chartHeight} data={data}>
+        <LineChart width={width} height={height} data={data}>
           <CartesianGrid strokeDasharray="3 3" />
           <XAxis dataKey="name" />
           <YAxis />
