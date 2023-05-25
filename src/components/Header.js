@@ -6,7 +6,7 @@ export default function Header() {
     <div className="nav-wrapper">
       <nav className="navbar">
         <Link to="/">
-          <h2>IOT Based Health Monitoring System</h2>
+          <h2 className="title">IOT Based Health Monitoring System</h2>
         </Link>
       </nav>
     </div>
