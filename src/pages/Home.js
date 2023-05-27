@@ -78,7 +78,7 @@ export default function SensorData() {
 
   return (
     <div className="sensor-data">
-      <h2>Table</h2>
+      <h2>Sensors Data Table</h2>
       <Table data={currentEntries} />
 
       <div className="graph">

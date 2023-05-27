@@ -11,17 +11,17 @@ import {
 import "../App.css";
 
 export default function Chart({ data, width, height }) {
-  const [chartWidth, setChartWidth] = useState(800);
-  const [chartHeight, setChartHeight] = useState(400);
+  const [chartWidth, setChartWidth] = useState(350);
+  const [chartHeight, setChartHeight] = useState(300);
   const [showTemperature, setShowTemperature] = useState(true);
   const [showHumidity, setShowHumidity] = useState(true);
   const [showBPM, setShowBPM] = useState(true);
 
   useEffect(() => {
     const handleResize = () => {
-      const isMobile = window.innerWidth > 600;
-      const newWidth = isMobile ? window.innerWidth + 120 : 300;
-      const newHeight = isMobile ? 400 : 300;
+      const isMobile = window.innerWidth <= 600;
+      const newWidth = isMobile ? window.innerWidth - 120 : 800;
+      const newHeight = isMobile ? 300 : 500;
       setChartWidth(newWidth);
       setChartHeight(newHeight);
     };
