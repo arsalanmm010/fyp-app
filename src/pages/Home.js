@@ -19,9 +19,9 @@ export default function SensorData() {
 
   useEffect(() => {
     function handleResize() {
-      const isMobile = window.matchMedia("(max-width: 600px)").matches;
-      const width = isMobile ? window.innerWidth - 120 : 800;
-      const height = isMobile ? 300 : 400;
+      const isMobile = window.matchMedia("(min-width: 600px)").matches;
+      const width = isMobile ? window.innerWidth + 120 : 300;
+      const height = isMobile ? 400 : 300;
       setChartWidth(width);
       setChartHeight(height);
     }
@@ -78,7 +78,7 @@ export default function SensorData() {
 
   return (
     <div className="sensor-data">
-      <h2>Sensor Data</h2>
+      <h2>Table</h2>
       <Table data={currentEntries} />
 
       <div className="graph">

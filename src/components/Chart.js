@@ -19,9 +19,9 @@ export default function Chart({ data, width, height }) {
 
   useEffect(() => {
     const handleResize = () => {
-      const isMobile = window.innerWidth <= 600;
-      const newWidth = isMobile ? window.innerWidth - 120 : 800;
-      const newHeight = isMobile ? 300 : 400;
+      const isMobile = window.innerWidth > 600;
+      const newWidth = isMobile ? window.innerWidth + 120 : 300;
+      const newHeight = isMobile ? 400 : 300;
       setChartWidth(newWidth);
       setChartHeight(newHeight);
     };
@@ -114,7 +114,7 @@ export default function Chart({ data, width, height }) {
         </label>
       </div>
       <div className="chart-wrapper">
-        <LineChart width={width} height={height} data={data}>
+        <LineChart width={chartWidth} height={chartHeight} data={data}>
           <CartesianGrid strokeDasharray="3 3" />
           <XAxis dataKey="name" />
           <YAxis />
