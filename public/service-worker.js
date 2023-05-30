@@ -1,8 +1,9 @@
 // service-worker.js
+const cacheName = "my-app-v1";
 
 self.addEventListener("install", (event) => {
   event.waitUntil(
-    caches.open("my-cache").then((cache) => {
+    caches.open(cacheName).then((cache) => {
       return cache.addAll([
         "/", // Add the paths to your static assets here
         "/index.html",
