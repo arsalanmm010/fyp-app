@@ -10,12 +10,14 @@ import {
 } from "recharts";
 import "../App.css";
 
-export default function Chart({ data, width, height }) {
+export default function Chart({ data }) {
   const [chartWidth, setChartWidth] = useState(350);
   const [chartHeight, setChartHeight] = useState(300);
   const [showTemperature, setShowTemperature] = useState(true);
   const [showHumidity, setShowHumidity] = useState(true);
   const [showBPM, setShowBPM] = useState(true);
+  const [showECG, setShowECG] = useState(true);
+  const [showSpO2, setShowSpO2] = useState(true);
 
   useEffect(() => {
     const handleResize = () => {
@@ -44,6 +46,14 @@ export default function Chart({ data, width, height }) {
 
   const handleToggleBPM = () => {
     setShowBPM(!showBPM);
+  };
+
+  const handleToggleECG = () => {
+    setShowECG(!showECG);
+  };
+
+  const handleToggleSpO2 = () => {
+    setShowSpO2(!showSpO2);
   };
 
   const renderLines = () => {
@@ -85,8 +95,34 @@ export default function Chart({ data, width, height }) {
       );
     }
 
+    if (showECG) {
+      lines.push(
+        <Line
+          key="ecg"
+          type="monotone"
+          dataKey="ecg"
+          name="ECG"
+          stroke="#B94722"
+        />
+      );
+    }
+
+    if (showSpO2) {
+      lines.push(
+        <Line
+          key="spo2"
+          type="monotone"
+          dataKey="spo2"
+          name="SpO2"
+          stroke="#B23701"
+        />
+      );
+    }
+
     return lines;
   };
+
+  console.log(data);
 
   return (
     <div className="chart-container">
@@ -111,6 +147,18 @@ export default function Chart({ data, width, height }) {
         <label>
           <input type="checkbox" checked={showBPM} onChange={handleToggleBPM} />
           BPM
+        </label>
+        <label>
+          <input type="checkbox" checked={showECG} onChange={handleToggleECG} />
+          ECG
+        </label>
+        <label>
+          <input
+            type="checkbox"
+            checked={showSpO2}
+            onChange={handleToggleSpO2}
+          />
+          SpO2
         </label>
       </div>
       <div className="chart-wrapper">
