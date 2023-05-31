@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import "../App.css";
 
-export default function Header() {
+export default function Header({ handleLogout }) {
   return (
     <div className="nav-wrapper">
       <nav className="navbar">
@@ -9,6 +9,9 @@ export default function Header() {
           <h2 className="title">IOT Based Health Monitoring System</h2>
         </Link>
       </nav>
+      <button onClick={handleLogout} className="logOut">
+        Logout
+      </button>
     </div>
   );
 }

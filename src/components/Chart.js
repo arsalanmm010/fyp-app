@@ -11,8 +11,8 @@ import {
 import "../App.css";
 
 export default function Chart({ data }) {
-  const [chartWidth, setChartWidth] = useState(350);
-  const [chartHeight, setChartHeight] = useState(300);
+  const [chartWidth, setChartWidth] = useState(400);
+  const [chartHeight, setChartHeight] = useState(400);
   const [showTemperature, setShowTemperature] = useState(true);
   const [showHumidity, setShowHumidity] = useState(true);
   const [showBPM, setShowBPM] = useState(true);
@@ -20,13 +20,13 @@ export default function Chart({ data }) {
   const [showSpO2, setShowSpO2] = useState(true);
 
   useEffect(() => {
-    const handleResize = () => {
-      const isMobile = window.innerWidth <= 600;
-      const newWidth = isMobile ? window.innerWidth - 120 : 800;
-      const newHeight = isMobile ? 300 : 500;
-      setChartWidth(newWidth);
-      setChartHeight(newHeight);
-    };
+    function handleResize() {
+      const isMobile = window.matchMedia("(min-width: 600px)").matches;
+      const width = isMobile ? 800 : 400;
+      const height = isMobile ? 400 : 400;
+      setChartWidth(width);
+      setChartHeight(height);
+    }
 
     handleResize(); // Initial sizing
     window.addEventListener("resize", handleResize);
